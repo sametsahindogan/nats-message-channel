@@ -6,7 +6,7 @@
 
 # Scenario
 
-Let's say we want to send real-time notifications / messages to our users without using Socket IO or Pusher.
+Let's say we want to send real-time notifications/messages to our users without using any 3rd party service like Socket IO or Pusher.
 
 And of course we want to separate it from our backend server to scale it freely.
 
