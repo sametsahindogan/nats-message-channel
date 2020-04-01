@@ -1,0 +1,6 @@
+{
+  "require": {
+    "repejota/nats": "^0.8.7",
+    "nesbot/carbon": "^1.29"
+  }
+}

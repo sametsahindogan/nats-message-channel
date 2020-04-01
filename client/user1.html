@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Nats & Websocket">
+    <meta name="author" content="sametsahindogan">
+    <title>github: sametsahindogan</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<main role="main" class="container-fluid">
+    <section class="jumbotron text-center" style="background-color: #bbb;">
+        <div class="container">
+            <h2 class="jumbotron-heading">Notification Channel 1</h2>
+            <br>
+            <p class="lead text-muted">This project simple implementation of
+                <a href="https://nats.io/" target="_blank">NATS MQ</a> and
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API"
+                   target="_blank">Websocket</a>
+                protocol. The scenario is about sending real-time notifications.
+            </p>
+            <p>
+                <button id="subscribe-channel" class="btn btn-success my-2">Subscribe</button>
+                <button id="unsubscribe-channel" class="btn btn-warning my-2" disabled>Unsubscribe</button>
+            </p>
+        </div>
+    </section>
+    <section id="container-main">
+        <!-- Messages -->
+    </section>
+</main>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="WebsocketClient.js"></script>
+<script>
+    const websocketClient = new WebsocketClient('127.0.0.1', '6003');
+
+    document.getElementById('subscribe-channel').addEventListener("click", function () {
+
+        let credentials = {
+            "type": "AUTH",
+            "token": "57uiWCKp/44wImihy0C9+g==", //user_id = 1
+        };
+
+        websocketClient.setButtonProperties();
+        websocketClient.connect(credentials);
+    });
+
+    document.getElementById('unsubscribe-channel').addEventListener("click", function () {
+
+        websocketClient.setButtonProperties(false);
+        websocketClient.disconnect();
+
+    });
+</script>
+</body>
+</html>

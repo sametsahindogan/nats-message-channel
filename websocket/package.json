@@ -1,0 +1,21 @@
+{
+  "name": "ws-node",
+  "version": "1.0.0",
+  "description": "NodeJS Websocket Server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "websocket",
+    "nats"
+  ],
+  "author": "sametsahindogan",
+  "license": "MIT",
+  "dependencies": {
+    "date-format": "^3.0.0",
+    "nats": "^1.2.4",
+    "ws": "^7.2.3"
+  }
+}
