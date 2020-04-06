@@ -33,7 +33,7 @@ class ChannelService {
 
         return new Promise((resolve, reject) => {
 
-            helpers.logger('CHANNEL', `Passing message: ${this.data['token']} to channel.`, 'authentication');
+            helpers.logger('CHANNEL', `Passing message: ${JSON.stringify(this.data)} to channel.`, 'authentication');
 
             this.natsClient.request('authentication', this.data['token'], null, (msg) => {
 
