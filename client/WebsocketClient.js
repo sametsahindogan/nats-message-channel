@@ -13,9 +13,9 @@ class WebsocketClient {
      */
     constructor(host, port) {
 
-        const connectionString = 'ws://' + host + ':' + port;
+        this.connectionString = 'ws://' + host + ':' + port;
 
-        this.ws = new WebSocket(connectionString);
+        this.ws = new WebSocket(this.connectionString);
 
     }
 
@@ -28,7 +28,7 @@ class WebsocketClient {
     connect = (credentials) => {
 
         if (this.ws.readyState === WebSocket.CLOSED) {
-            this.ws = new WebSocket("ws://127.0.0.1:6003");
+            this.ws = new WebSocket(this.connectionString);
 
             this.ws.onopen = () => {
                 this.ws.send(JSON.stringify(credentials));
