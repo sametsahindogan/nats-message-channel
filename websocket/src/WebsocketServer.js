@@ -1,5 +1,7 @@
 "use strict";
 
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
 const WebSocket = require('ws');
 const ChannelService = require('./ChannelService');
 const helpers = require('./helpers');
@@ -17,11 +19,26 @@ class WebsocketServer {
      */
     constructor() {
 
-        const server = new WebSocket.Server({
-            port: 6003
-        });
+        if (cluster.isMaster) {
 
-        this.startServer(server);
+            helpers.logger('PROCESS', `Master ${process.pid} is running.`);
+
+            for (let i = 0; i < numCPUs; i++) {
+                cluster.fork();
+            }
+
+            cluster.on('exit', (worker, code, signal) => {
+                helpers.logger('PROCESS', `worker ${worker.process.pid} is died.`);
+            });
+
+        } else {
+
+            const server = new WebSocket.Server({port: 6003});
+
+            this.startServer(server);
+
+            helpers.logger('PROCESS', `Worker ${process.pid} is started.`);
+        }
     };
 
     /**
