@@ -13,6 +13,10 @@ class WebsocketClient {
      */
     constructor(host, port) {
 
+        this.container = document.getElementById('container-main');
+        this.unsubscribeButton = document.getElementById('unsubscribe-channel');
+        this.subscribeButton = document.getElementById('subscribe-channel');
+
         this.connectionString = 'ws://' + host + ':' + port;
 
         this.ws = new WebSocket(this.connectionString);
@@ -106,18 +110,15 @@ class WebsocketClient {
      */
     setButtonProperties = (isSubscribed = true) => {
 
-        let unsubscribeButton = document.getElementById('unsubscribe-channel');
-        let subscribeButton = document.getElementById('subscribe-channel');
-
         if (!isSubscribed) {
-            unsubscribeButton.setAttribute('disabled', true);
-            subscribeButton.removeAttribute('disabled');
+            this.unsubscribeButton.setAttribute('disabled', true);
+            this.subscribeButton.removeAttribute('disabled');
 
             return;
         }
 
-        unsubscribeButton.removeAttribute('disabled');
-        subscribeButton.setAttribute('disabled', true);
+        this.unsubscribeButton.removeAttribute('disabled');
+        this.subscribeButton.setAttribute('disabled', true);
     };
 
     /**
@@ -127,8 +128,6 @@ class WebsocketClient {
      */
     appendHtml = (data) => {
 
-        let container = document.getElementById('container-main');
-
-        container.insertAdjacentHTML('beforeend', data);
+        this.container.insertAdjacentHTML('beforeend', data);
     };
 }

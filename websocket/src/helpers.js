@@ -44,4 +44,4 @@ let isJson = (str) => {
     return true;
 };
 
-module.exports = {logger: logger, isJson: isJson};
+module.exports = {logger, isJson};
